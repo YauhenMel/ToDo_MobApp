@@ -1,6 +1,6 @@
 import { View, Text } from 'react-native';
 
-export default function Index() {
+export default function Root() {
     return (
         <View>
             <Text>Home</Text>
