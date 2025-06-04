@@ -25,17 +25,17 @@ export const Header:FC = () => {
     }
 
     return (
-        <View>
+        <View style={styles.container}>
             <View style={styles.title}>
-                <Text>
+                <Text style={styles.title_text}>
                     Your tasks
                 </Text>
                 <Link to={ROUTES.add_task}><PlusIcon fill={COLORS.black}/></Link>
             </View>
             <View style={styles.sorter}>
                 <View style={styles.sorterByStatus}>
-                    <Tag status='all' label='All'/>
-                    <Tag status='in-progress' label='In Progress'/>
+                    <Tag label='All'/>
+                    <Tag status='in_progress' label='In Progress'/>
                     <Tag status='completed' label='Completed'/>
                     <Tag status='canceled' label='Canceled'/>
                 </View>

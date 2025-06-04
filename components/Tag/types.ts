@@ -1,4 +1,6 @@
+import {StatusType} from "@/types";
+
 export interface TagProps  {
-    status: 'all' | 'in-progress' | 'completed' | 'canceled';
+    status?: StatusType;
     label: string;
 }
