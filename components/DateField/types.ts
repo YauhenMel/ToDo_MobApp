@@ -1,10 +1,10 @@
 import {FieldError} from "react-hook-form";
 
-export interface TextFieldProps {
+export interface DateFieldProps {
     label: string;
-    onChange: (value: string) => void;
+    onChange: (value: Date) => void;
     onBlur: () => void;
-    value: string;
+    value: Date;
     error?: FieldError;
     isTouched: boolean;
     isSubmitted: boolean;
