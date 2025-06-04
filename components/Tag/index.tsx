@@ -17,7 +17,7 @@ export const Tag:FC<TagProps> = ({ status, label }) => {
     return (
         <TouchableOpacity style={styles(isActive).container}  onPress={handlePress}>
         <Text style={styles(isActive).text}>
-            #{status}
+            #{label}
         </Text>
     </TouchableOpacity>)
 }

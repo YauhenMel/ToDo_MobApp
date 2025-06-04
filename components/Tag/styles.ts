@@ -6,8 +6,10 @@ export const styles = (isActive: boolean) => StyleSheet.create({
         padding: 5,
         alignItems: "center",
         borderRadius: 10,
-        backgroundColor: isActive && COLORS.primary,
-        border: "1px solid " + COLORS.black,
+        backgroundColor: isActive ? COLORS.primary : 'transparent',
+        borderWidth: 1,
+        borderColor: COLORS.black,
+        borderStyle: "solid",
     },
     text: {
         color: COLORS.black,
