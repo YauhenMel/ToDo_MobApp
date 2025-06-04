@@ -1,7 +1,7 @@
 import {StyleSheet} from "react-native";
 import {COLORS} from "@/style/colors";
 
-export const styles = (filled: boolean) => StyleSheet.create({
+export const styles = (filled?: boolean) => StyleSheet.create({
     container: {
         padding: 8,
         alignItems: "center",

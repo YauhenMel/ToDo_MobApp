@@ -3,15 +3,22 @@ import { createStackNavigator } from '@react-navigation/stack';
 import Root from "@/app/root";
 import AddTask from "@/app/add-task";
 import Task from "@/app/task";
+import {Header} from "@/components/Header";
+import {ROUTES} from "@/constants/routes";
+import {Platform, StatusBar} from "react-native";
 
 const Stack = createStackNavigator();
 
 export default function RootLayout() {
   return (
-      <Stack.Navigator initialRouteName="root">
-        <Stack.Screen name="root" component={Root} />
-        <Stack.Screen name="task" component={Task} />
-        <Stack.Screen name="add-task" component={AddTask} />
+      <Stack.Navigator initialRouteName={ROUTES.root} screenOptions={{header: Header,
+          cardStyle: {
+              paddingTop: Platform.OS === 'android' ? StatusBar.currentHeight : 0,
+          },
+      }}>
+        <Stack.Screen name={ROUTES.root} component={Root} />
+        <Stack.Screen name={ROUTES.task} component={Task} />
+        <Stack.Screen name={ROUTES.add_task} component={AddTask} />
       </Stack.Navigator>
           );
 }
