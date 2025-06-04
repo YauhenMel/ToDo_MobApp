@@ -6,7 +6,9 @@ export const styles = StyleSheet.create({
         padding: 8,
         alignItems: "center",
         borderRadius: 10,
-        border: "1px solid " + COLORS.black,
+        borderWidth: 1,
+        borderColor: COLORS.black,
+        borderStyle: "solid",
     },
     text: {
         color: COLORS.black,
