@@ -16,11 +16,23 @@ export default function Root() {
 
   useEffect(() => {
     if (statusParam) {
-      getTasks({ status: statusParam }).then((tasks) => setTasks(tasks));
+      getTasks({ status: statusParam })
+        .then((tasks) => setTasks(tasks))
+        .catch(() => {
+          setTasks([]);
+        });
     } else if (createdAtParam) {
-      getTasks({ createdAt: createdAtParam }).then((tasks) => setTasks(tasks));
+      getTasks({ createdAt: createdAtParam })
+        .then((tasks) => setTasks(tasks))
+        .catch(() => {
+          setTasks([]);
+        });
     } else {
-      getTasks().then((tasks) => setTasks(tasks));
+      getTasks()
+        .then((tasks) => setTasks(tasks))
+        .catch(() => {
+          setTasks([]);
+        });
     }
   }, [statusParam, createdAtParam]);
 
