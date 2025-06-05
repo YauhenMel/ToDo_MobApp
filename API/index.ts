@@ -42,3 +42,9 @@ export const changeTaskStatus = async (
 
   return response.data;
 };
+
+export const deleteTask = async (id: string): Promise<ITask> => {
+  const response = await instance.delete('/task/' + id);
+
+  return response.data;
+};

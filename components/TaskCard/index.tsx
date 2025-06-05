@@ -3,6 +3,7 @@ import { useNavigation } from '@react-navigation/native';
 import { Text, TouchableOpacity } from 'react-native';
 import { TaskProps } from '@/components/TaskCard/types';
 import { styles } from '@/components/TaskCard/styles';
+import { ROUTES } from '@/constants/routes';
 
 export const TaskCard: FC<TaskProps> = ({
   id,
@@ -13,7 +14,7 @@ export const TaskCard: FC<TaskProps> = ({
   const navigation = useNavigation();
 
   const handlePress = () => {
-    navigation.navigate('task', { id });
+    navigation.navigate(ROUTES.task, { id });
   };
 
   return (
