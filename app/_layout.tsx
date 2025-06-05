@@ -1,5 +1,4 @@
 import { createStackNavigator } from '@react-navigation/stack';
-
 import Root from '@/app/root';
 import AddTask from '@/app/add-task';
 import Task from '@/app/task';

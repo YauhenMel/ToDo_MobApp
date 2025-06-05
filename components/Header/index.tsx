@@ -11,13 +11,20 @@ import { Button } from '@/components/Button';
 import DateTimePicker, {
   DateTimePickerEvent,
 } from '@react-native-community/datetimepicker';
+import { useNavigation } from '@react-navigation/native';
 
 export const Header: FC = () => {
   const [date, setDate] = useState(new Date());
   const [show, setShow] = useState(false);
 
+  const navigation = useNavigation();
+
   const onChange = (event: DateTimePickerEvent, date?: Date) => {
-    if (date) setDate(date);
+    if (date && event.type === 'set') {
+      setDate(date);
+
+      navigation.navigate(ROUTES.root);
+    }
 
     setShow(false);
   };

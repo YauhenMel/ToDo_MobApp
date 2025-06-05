@@ -4,10 +4,11 @@ import { Controller, useForm } from 'react-hook-form';
 import { Button } from '@/components/Button';
 import { z } from 'zod';
 import { zodResolver } from '@hookform/resolvers/zod';
-import { ITask } from '@/types';
 import { DateField } from '@/components/DateField';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { styles } from '@/app/add-task/styles';
+import { addTask } from '@/API';
+import { CreateTaskDto } from '@/app/add-task/types';
 
 export default function AddTask() {
   const taskSchema = z.object({
@@ -50,8 +51,8 @@ export default function AddTask() {
     resolver: zodResolver(taskSchema),
   });
 
-  const onSubmit = async (data: ITask) => {
-    console.log(data);
+  const onSubmit = async (data: CreateTaskDto) => {
+    await addTask(data);
   };
 
   return (
