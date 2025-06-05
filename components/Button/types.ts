@@ -1,7 +1,7 @@
-import {ReactNode} from "react";
+import { ReactNode } from 'react';
 
 export interface ButtonProps {
-    children?: ReactNode;
-    filled?: boolean;
-    onPress: () => void;
+  children?: ReactNode;
+  filled?: boolean;
+  onPress: () => void;
 }
