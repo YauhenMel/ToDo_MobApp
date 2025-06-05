@@ -1,27 +1,22 @@
-import {FC} from "react";
-import {useNavigation, useRoute} from '@react-navigation/native';
-import { Text, TouchableOpacity} from "react-native";
-import {TagProps} from "@/components/Tag/types";
-import {styles} from "@/components/Tag/styles";
+import { FC } from 'react';
+import { useNavigation, useRoute } from '@react-navigation/native';
+import { Text, TouchableOpacity } from 'react-native';
+import { TagProps } from '@/components/Tag/types';
+import { styles } from '@/components/Tag/styles';
 
-export const Tag:FC<TagProps> = ({ status, label }) => {
-    const navigation = useNavigation();
-    const route = useRoute();
+export const Tag: FC<TagProps> = ({ status, label }) => {
+  const navigation = useNavigation();
+  const route = useRoute();
 
-    const handlePress = () => {
-        navigation.navigate('root', {status});
-    };
+  const handlePress = () => {
+    navigation.navigate('root', { status });
+  };
 
-    const isActive = route.params?.status === status;
+  const isActive = route.params?.status === status;
 
-    return (
-        <TouchableOpacity style={styles(isActive).container}  onPress={handlePress}>
-        <Text style={styles(isActive).text}>
-            #{label}
-        </Text>
-    </TouchableOpacity>)
-}
-
-
-
-
+  return (
+    <TouchableOpacity style={styles(isActive).container} onPress={handlePress}>
+      <Text style={styles(isActive).text}>#{label}</Text>
+    </TouchableOpacity>
+  );
+};

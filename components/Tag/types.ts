@@ -1,6 +1,6 @@
-import {StatusType} from "@/types";
+import { StatusType } from '@/types';
 
-export interface TagProps  {
-    status?: StatusType;
-    label: string;
+export interface TagProps {
+  status?: StatusType;
+  label: string;
 }
