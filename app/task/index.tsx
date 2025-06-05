@@ -15,8 +15,6 @@ export default function Task() {
 
   const navigation = useNavigation();
 
-  const handlePress = () => {};
-
   const route = useRoute();
 
   const taskId = route.params?.id;

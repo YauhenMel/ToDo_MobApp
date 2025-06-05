@@ -1,13 +1,14 @@
-import { ScrollView } from 'react-native';
-import { ITask } from '@/types';
+import { ScrollView, View } from 'react-native';
 import { TaskCard } from '@/components/TaskCard';
 import { styles } from '@/app/root/styles';
 import { useEffect, useState } from 'react';
 import { getTasks } from '@/API';
 import { useRoute } from '@react-navigation/native';
+import { DateTitle } from '@/components/DateTitle';
+import { groupByDate } from '@/utils/groupByDate';
 
 export default function Root() {
-  const [tasks, setTasks] = useState<ITask[]>([]);
+  const [tasks, setTasks] = useState<any>();
 
   const route = useRoute();
 
@@ -17,36 +18,60 @@ export default function Root() {
   useEffect(() => {
     if (statusParam) {
       getTasks({ status: statusParam })
-        .then((tasks) => setTasks(tasks))
+        .then((tasks) => {
+          const groupedTasks = groupByDate(tasks);
+
+          setTasks(groupedTasks);
+        })
         .catch(() => {
           setTasks([]);
         });
     } else if (createdAtParam) {
       getTasks({ createdAt: createdAtParam })
-        .then((tasks) => setTasks(tasks))
+        .then((tasks) => {
+          const groupedTasks = groupByDate(tasks);
+
+          setTasks(groupedTasks);
+        })
         .catch(() => {
           setTasks([]);
         });
     } else {
       getTasks()
-        .then((tasks) => setTasks(tasks))
-        .catch(() => {
+        .then((tasks) => {
+          const groupedTasks = groupByDate(tasks);
+
+          setTasks(groupedTasks);
+        })
+        .catch((error) => {
           setTasks([]);
         });
     }
   }, [statusParam, createdAtParam]);
 
   return (
-    <ScrollView contentContainerStyle={styles.container}>
-      {tasks.map(({ title, status, id, executionTime }) => (
-        <TaskCard
-          key={id}
-          id={id}
-          title={title}
-          status={status}
-          executionTime={executionTime}
-        />
-      ))}
+    <ScrollView>
+      {tasks &&
+        Object.keys(tasks).map((createdAt) => {
+          return (
+            <View key={createdAt}>
+              <DateTitle date={createdAt} />
+              <View style={styles.container}>
+                {tasks[createdAt].map(
+                  ({ id, title, status, executionTime }) => (
+                    <TaskCard
+                      key={id}
+                      id={id}
+                      title={title}
+                      status={status}
+                      executionTime={executionTime}
+                    />
+                  ),
+                )}
+              </View>
+            </View>
+          );
+        })}
     </ScrollView>
   );
 }
