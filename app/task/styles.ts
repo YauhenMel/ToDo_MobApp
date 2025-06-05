@@ -1,4 +1,5 @@
 import { StyleSheet } from 'react-native';
+import { COLORS } from '@/style/colors';
 
 export const styles = StyleSheet.create({
   container: {
@@ -8,11 +9,12 @@ export const styles = StyleSheet.create({
     justifyContent: 'space-between',
   },
   task: {
+    flex: 1,
     position: 'relative',
-    padding: 8,
+    display: 'flex',
+    padding: 20,
+    rowGap: 20,
     alignItems: 'center',
-    borderRadius: 10,
-    borderWidth: 1,
     borderStyle: 'solid',
   },
   task_action: {
@@ -23,17 +25,40 @@ export const styles = StyleSheet.create({
     right: 2,
   },
   title: {
-    fontSize: 18,
+    alignSelf: 'flex-start',
+    fontSize: 28,
+    fontWeight: '500',
+    color: COLORS.black,
   },
   executionTime: {
-    fontSize: 12,
+    alignSelf: 'flex-start',
+  },
+  executionTime_label: {
+    color: COLORS.black,
+    fontSize: 18,
+  },
+  executionTime_value: {
+    color: COLORS.black,
+    fontSize: 16,
   },
   description: {
+    textAlign: 'justify',
+    flex: 1,
+    width: '100%',
+    paddingVertical: 20,
     fontSize: 16,
+    color: COLORS.black,
+  },
+  status: {
+    padding: 10,
+    borderRadius: 20,
+    alignSelf: 'flex-end',
+    color: COLORS.black,
   },
   actions: {
     display: 'flex',
     flexDirection: 'row',
-    justifyContent: 'space-between',
+    justifyContent: 'center',
+    columnGap: 20,
   },
 });

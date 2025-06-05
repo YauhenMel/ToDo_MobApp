@@ -1,7 +1,7 @@
 import Svg, { SvgProps, Path, Rect } from 'react-native-svg';
 
 const DateIcon = (props: SvgProps) => (
-  <Svg width={24} height={24} viewBox="0 0 24 24" {...props} fill="none">
+  <Svg width={28} height={28} viewBox="0 0 24 24" {...props} fill="none">
     <Path
       stroke={props.stroke}
       strokeLinecap="round"

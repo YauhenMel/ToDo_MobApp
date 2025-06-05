@@ -13,6 +13,8 @@ export const styles = (filled?: boolean) =>
       borderStyle: 'solid',
     },
     text: {
+      display: 'flex',
+      alignItems: 'center',
       color: COLORS.black,
       fontSize: 18,
     },

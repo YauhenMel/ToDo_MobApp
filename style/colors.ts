@@ -1,10 +1,10 @@
 export const COLORS = {
-  primary: '#c7e314',
+  primary: '#d0dca8',
   gray: '#a3a3a2',
-  black: '#3b3b38',
-  error: '#f44336',
+  black: '#424040',
+  error: '#ba6c64',
   white: '#e6e6e6',
-  in_progress: '#e3bbf5',
-  completed: '#acf6bb',
-  canceled: '#f4efb3',
+  in_progress: '#e1cce8',
+  completed: '#b3dfbc',
+  canceled: '#dddab9',
 };

@@ -6,5 +6,11 @@ export const styles = StyleSheet.create({
     display: 'flex',
     flexDirection: 'column',
     justifyContent: 'space-between',
+    padding: 8,
+  },
+  fields_container: {
+    display: 'flex',
+    flexDirection: 'column',
+    rowGap: 10,
   },
 });

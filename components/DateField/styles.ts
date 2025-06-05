@@ -5,6 +5,9 @@ export const styles = StyleSheet.create({
   container: {
     position: 'relative',
   },
+  label: {
+    color: COLORS.black,
+  },
   input: {
     padding: 8,
     borderRadius: 10,
@@ -13,6 +16,7 @@ export const styles = StyleSheet.create({
     borderColor: COLORS.black,
     borderStyle: 'solid',
     fontSize: 18,
+    color: COLORS.black,
   },
   error: {
     fontSize: 10,

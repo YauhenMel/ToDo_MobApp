@@ -6,7 +6,7 @@ export const styles = (isActive: boolean) =>
     container: {
       padding: 5,
       alignItems: 'center',
-      borderRadius: 10,
+      borderRadius: 6,
       backgroundColor: isActive ? COLORS.primary : 'transparent',
       borderWidth: 1,
       borderColor: COLORS.black,
