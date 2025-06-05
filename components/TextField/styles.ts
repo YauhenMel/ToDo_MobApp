@@ -13,7 +13,7 @@ export const styles = StyleSheet.create({
     borderColor: COLORS.black,
     borderStyle: 'solid',
     fontSize: 18,
-    color: COLORS.error,
+    color: COLORS.black,
   },
   error: {
     fontSize: 10,
