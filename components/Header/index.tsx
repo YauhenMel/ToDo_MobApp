@@ -23,7 +23,8 @@ export const Header: FC = () => {
     if (date && event.type === 'set') {
       setDate(date);
 
-      navigation.navigate(ROUTES.root);
+      // ToDo: Fix sorting by date
+      navigation.navigate(ROUTES.root, { createdAt: date.toString() });
     }
 
     setShow(false);

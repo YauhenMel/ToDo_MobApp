@@ -13,7 +13,8 @@ export const Tag: FC<TagProps> = ({ status, label }) => {
     navigation.navigate(ROUTES.root, { status });
   };
 
-  const isActive = route.params?.status === status;
+  const isActive =
+    route.name === ROUTES.root && route.params?.status === status;
 
   return (
     <TouchableOpacity style={styles(isActive).container} onPress={handlePress}>
