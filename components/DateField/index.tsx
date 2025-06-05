@@ -1,4 +1,4 @@
-import { FC, useState } from 'react';
+import { FC, useRef, useState } from 'react';
 import { Text, TextInput, View } from 'react-native';
 import { styles } from './styles';
 import { DateFieldProps } from '@/components/DateField/types';
@@ -21,6 +21,9 @@ export const DateField: FC<DateFieldProps> = ({
 }) => {
   const [showDatePicker, setShowDatePicker] = useState(false);
   const [mode, setMode] = useState<'date' | 'time'>('date');
+  const [isEditable, setIsEditable] = useState(true);
+
+  const inputRef = useRef<TextInput>(null);
 
   const handleSetShowDatePicker = () => {
     setShowDatePicker(!showDatePicker);
@@ -42,15 +45,27 @@ export const DateField: FC<DateFieldProps> = ({
     }
   };
 
+  const handleOnBlurShowDatePicker = () => {
+    setIsEditable(true);
+
+    if (inputRef.current) {
+      inputRef.current.blur();
+    }
+
+    handleSetShowDatePicker();
+  };
+
   return (
     <View>
-      <Text>{label}</Text>
+      <Text style={styles.label}>{label}</Text>
       <View style={styles.container}>
         <TextInput
+          ref={inputRef}
           style={styles.input}
           value={formatDate(value)}
           onBlur={onBlur}
-          editable={false}
+          onFocus={handleOnBlurShowDatePicker}
+          editable={isEditable}
         />
         <View style={styles.datePickerButton}>
           <Button onPress={handleSetShowDatePicker}>

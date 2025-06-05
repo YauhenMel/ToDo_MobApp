@@ -14,7 +14,7 @@ export const TextField: FC<TextFieldProps> = ({
   multiline,
 }) => (
   <View>
-    <Text>{label}</Text>
+    <Text style={styles.label}>{label}</Text>
     <TextInput
       style={styles.input}
       multiline={multiline}

@@ -6,6 +6,7 @@ import { getTasks } from '@/API';
 import { useRoute } from '@react-navigation/native';
 import { DateTitle } from '@/components/DateTitle';
 import { groupByDate } from '@/utils/groupByDate';
+import { ITask } from '@/types';
 
 export default function Root() {
   const [tasks, setTasks] = useState<any>();
@@ -43,7 +44,7 @@ export default function Root() {
 
           setTasks(groupedTasks);
         })
-        .catch((error) => {
+        .catch(() => {
           setTasks([]);
         });
     }
@@ -58,7 +59,7 @@ export default function Root() {
               <DateTitle date={createdAt} />
               <View style={styles.container}>
                 {tasks[createdAt].map(
-                  ({ id, title, status, executionTime }) => (
+                  ({ id, title, status, executionTime }: ITask) => (
                     <TaskCard
                       key={id}
                       id={id}

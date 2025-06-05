@@ -6,12 +6,20 @@ import { useNavigation, useRoute } from '@react-navigation/native';
 import { useEffect, useState } from 'react';
 import { ITask, StatusType } from '@/types';
 import { changeTaskStatus, deleteTask, getTask } from '@/API';
-import DateIcon from '@/assets/icons/DateIcon';
 import { COLORS } from '@/style/colors';
 import { ROUTES } from '@/constants/routes';
+import { formatDate } from '@/utils/formatDate';
+import InProgressIcon from '@/assets/icons/InProgressIcon';
+import DeleteIcon from '@/assets/icons/DeleteIcon';
 
 export default function Task() {
   const [task, setTask] = useState<ITask | null>(null);
+
+  const statusLabel = {
+    in_progress: 'In progress',
+    canceled: 'Canceled',
+    completed: 'Completed',
+  };
 
   const navigation = useNavigation();
 
@@ -59,29 +67,31 @@ export default function Task() {
                   handlePressChangeTaskStatus(task.id, 'in_progress')
                 }
               >
-                <DateIcon
+                <InProgressIcon
                   stroke={
                     task.status === 'in_progress'
-                      ? COLORS.completed
-                      : COLORS.gray
-                  }
-                  fill={
-                    task.status === 'in_progress'
-                      ? COLORS.completed
-                      : COLORS.gray
+                      ? COLORS.in_progress
+                      : COLORS.black
                   }
                 />
               </Button>
               <Button onPress={() => handlePressDeleteTask(task.id)}>
-                <DateIcon stroke={COLORS.black} fill={COLORS.black} />
+                <DeleteIcon stroke={COLORS.black} fill={COLORS.black} />
               </Button>
             </View>
             <Text style={styles.title}>{task.title}</Text>
-            <Text style={styles.executionTime}>
-              {task.executionTime.toString()}
-            </Text>
+            <View style={styles.executionTime}>
+              <Text style={styles.executionTime_label}>Execution time:</Text>
+              <Text style={styles.executionTime_value}>
+                {formatDate(new Date(task.executionTime))}
+              </Text>
+            </View>
             <Text style={styles.description}>{task.description}</Text>
-            <Text>{task.status}</Text>
+            <Text
+              style={[styles.status, { backgroundColor: COLORS[task.status] }]}
+            >
+              {statusLabel[task.status]}
+            </Text>
           </View>
           <View style={styles.actions}>
             <Button
