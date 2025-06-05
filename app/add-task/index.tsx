@@ -9,8 +9,12 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 import { styles } from '@/app/add-task/styles';
 import { addTask } from '@/API';
 import { CreateTaskDto } from '@/app/add-task/types';
+import { useNavigation } from '@react-navigation/native';
+import { ROUTES } from '@/constants/routes';
 
 export default function AddTask() {
+  const navigation = useNavigation();
+
   const taskSchema = z.object({
     title: z
       .string()
@@ -52,7 +56,13 @@ export default function AddTask() {
   });
 
   const onSubmit = async (data: CreateTaskDto) => {
-    await addTask(data);
+    try {
+      const task = await addTask(data);
+
+      navigation.navigate(ROUTES.task, { id: task.id });
+    } catch (error) {
+      console.error(error);
+    }
   };
 
   return (
