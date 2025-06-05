@@ -13,7 +13,7 @@ export const TaskCard: FC<TaskProps> = ({
   const navigation = useNavigation();
 
   const handlePress = () => {
-    navigation.navigate('task/' + id);
+    navigation.navigate('task', { id });
   };
 
   return (

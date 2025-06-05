@@ -16,11 +16,28 @@ export const getTasks = async (
   return response.data;
 };
 
+export const getTask = async (id: string): Promise<ITask> => {
+  const response = await instance.get('/task', { params: { id } });
+
+  return response.data[0];
+};
+
 export const addTask = async (task: CreateTaskDto): Promise<ITask> => {
   const response = await instance.post('/task', {
     ...task,
     status: 'in_progress',
     createdAt: new Date(),
+  });
+
+  return response.data;
+};
+
+export const changeTaskStatus = async (
+  id: string,
+  status: StatusType,
+): Promise<ITask> => {
+  const response = await instance.put('/task/' + id, {
+    status,
   });
 
   return response.data;
