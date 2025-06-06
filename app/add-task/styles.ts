@@ -9,8 +9,10 @@ export const styles = StyleSheet.create({
     padding: 8,
   },
   fields_container: {
+    flex: 1,
     display: 'flex',
     flexDirection: 'column',
-    rowGap: 10,
+    justifyContent: 'flex-start',
+    paddingBottom: 20,
   },
 });

@@ -1,5 +1,4 @@
-import { View } from 'react-native';
-import Modal from 'react-native-modal';
+import { Modal } from 'react-native';
 import DateTimePicker, {
   DateTimePickerEvent,
 } from '@react-native-community/datetimepicker';
@@ -7,7 +6,7 @@ import { FC, useState } from 'react';
 import { useNavigation, useRoute } from '@react-navigation/native';
 import { ROUTES } from '@/constants/routes';
 import { formatDateWithoutTime } from '@/utils/formatDate';
-import {DatePickerModalProps} from "@/components/DatePickerModal/type";
+import { DatePickerModalProps } from '@/components/DatePickerModal/type';
 
 export const DatePickerModal: FC<DatePickerModalProps> = ({
   show,
@@ -34,8 +33,8 @@ export const DatePickerModal: FC<DatePickerModalProps> = ({
   };
 
   return (
-    <View>
-      <Modal hideModalContentWhileAnimating isVisible={show}>
+    show && (
+      <Modal>
         <DateTimePicker
           testID="dateTimePicker"
           value={date}
@@ -44,6 +43,6 @@ export const DatePickerModal: FC<DatePickerModalProps> = ({
           onChange={onChange}
         />
       </Modal>
-    </View>
+    )
   );
 };

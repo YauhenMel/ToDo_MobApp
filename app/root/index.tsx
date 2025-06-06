@@ -17,37 +17,18 @@ export default function Root() {
   const createdAtParam = route.params?.createdAt;
 
   useEffect(() => {
-    if (statusParam) {
-      getTasks({ status: statusParam })
-        .then((tasks) => {
-          const groupedTasks = groupByDate(tasks);
+    getTasks({
+      createdAt: createdAtParam,
+      status: statusParam,
+    })
+      .then((tasks) => {
+        const groupedTasks = groupByDate(tasks);
 
-          setTasks(groupedTasks);
-        })
-        .catch(() => {
-          setTasks([]);
-        });
-    } else if (createdAtParam) {
-      getTasks({ createdAt: createdAtParam })
-        .then((tasks) => {
-          const groupedTasks = groupByDate(tasks);
-
-          setTasks(groupedTasks);
-        })
-        .catch(() => {
-          setTasks([]);
-        });
-    } else {
-      getTasks()
-        .then((tasks) => {
-          const groupedTasks = groupByDate(tasks);
-
-          setTasks(groupedTasks);
-        })
-        .catch(() => {
-          setTasks([]);
-        });
-    }
+        setTasks(groupedTasks);
+      })
+      .catch(() => {
+        setTasks([]);
+      });
   }, [statusParam, createdAtParam]);
 
   return (
