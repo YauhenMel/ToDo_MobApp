@@ -13,12 +13,11 @@ export const TextField: FC<TextFieldProps> = ({
   onBlur,
   multiline,
 }) => (
-  <View>
+  <View style={[styles.container, multiline && { flex: 1 }]}>
     <Text style={styles.label}>{label}</Text>
     <TextInput
-      style={styles.input}
+      style={[styles.input, multiline && { flex: 1, textAlignVertical: 'top' }]}
       multiline={multiline}
-      numberOfLines={4}
       onChangeText={onChange}
       value={value}
       onBlur={onBlur}

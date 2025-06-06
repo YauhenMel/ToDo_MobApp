@@ -2,6 +2,9 @@ import { StyleSheet } from 'react-native';
 import { COLORS } from '@/style/colors';
 
 export const styles = StyleSheet.create({
+  container: {
+    display: 'flex',
+  },
   label: {
     color: COLORS.black,
   },
