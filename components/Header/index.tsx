@@ -8,31 +8,10 @@ import { styles } from '@/components/Header/styles';
 import { Tag } from '@/components/Tag';
 import DateIcon from '@/assets/icons/DateIcon';
 import { Button } from '@/components/Button';
-import DateTimePicker, {
-  DateTimePickerEvent,
-} from '@react-native-community/datetimepicker';
-import { useNavigation } from '@react-navigation/native';
+import { DatePickerModal } from '@/components/DatePickerModal/DatePickerModal';
 
 export const Header: FC = () => {
-  const [date, setDate] = useState(new Date());
   const [show, setShow] = useState(false);
-
-  const navigation = useNavigation();
-
-  const onChange = (event: DateTimePickerEvent, date?: Date) => {
-    if (date && event.type === 'set') {
-      setDate(date);
-
-      // ToDo: Fix sorting by date
-      navigation.navigate(ROUTES.root, { createdAt: date.toString() });
-    }
-
-    setShow(false);
-  };
-
-  const handleShowDatePicker = () => {
-    setShow(true);
-  };
 
   return (
     <View style={styles.container}>
@@ -50,20 +29,12 @@ export const Header: FC = () => {
           <Tag status="canceled" label="Canceled" />
         </View>
         <View>
-          <Button onPress={handleShowDatePicker}>
+          <Button onPress={() => setShow(true)}>
             <DateIcon stroke={COLORS.black} fill={COLORS.black} />
           </Button>
-          {show && (
-            <DateTimePicker
-              testID="dateTimePicker"
-              value={date}
-              mode="date"
-              is24Hour={true}
-              onChange={onChange}
-            />
-          )}
         </View>
       </View>
+      <DatePickerModal show={show} setShow={setShow} />
     </View>
   );
 };

@@ -23,6 +23,7 @@ export const styles = StyleSheet.create({
     flexDirection: 'row',
     top: 2,
     right: 2,
+    zIndex: 1,
   },
   title: {
     alignSelf: 'flex-start',
