@@ -7,10 +7,12 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import { DateField } from '@/components/DateField';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { styles } from '@/app/add-task/styles';
-import { addTask } from '@/API';
+import { addTask } from '../../StorageAPI';
 import { CreateTaskDto } from '@/app/add-task/types';
 import { useNavigation } from '@react-navigation/native';
 import { ROUTES } from '@/constants/routes';
+import { ITask } from '@/types';
+import { formatDateWithoutTime } from '@/utils/formatDate';
 
 export default function AddTask() {
   const navigation = useNavigation();
@@ -60,7 +62,14 @@ export default function AddTask() {
 
   const onSubmit = async (data: CreateTaskDto) => {
     try {
-      const task = await addTask(data);
+      const newTask: ITask = {
+        ...data,
+        status: 'in_progress',
+        createdAt: formatDateWithoutTime(new Date()),
+        id: Date.now().toString(),
+      };
+
+      const task = await addTask(newTask);
 
       navigation.navigate(ROUTES.task, { id: task.id });
     } catch (error) {
