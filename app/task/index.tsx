@@ -5,7 +5,7 @@ import { styles } from '@/app/task/styles';
 import { useNavigation, useRoute } from '@react-navigation/native';
 import { useEffect, useState } from 'react';
 import { ITask, StatusType } from '@/types';
-import { changeTaskStatus, deleteTask, getTask } from '@/API';
+import { changeTaskStatus, deleteTask, getTask } from '../../StorageAPI';
 import { COLORS } from '@/style/colors';
 import { ROUTES } from '@/constants/routes';
 import { formatDate } from '@/utils/formatDate';
@@ -38,9 +38,9 @@ export default function Task() {
     status: StatusType,
   ) => {
     try {
-      await changeTaskStatus(taskId, status);
+      const id = await changeTaskStatus(taskId, status);
 
-      setTask((prevState) => prevState && { ...prevState, status });
+      if (id) setTask((prevState) => prevState && { ...prevState, status });
     } catch (error) {
       console.log(error);
     }
@@ -48,9 +48,9 @@ export default function Task() {
 
   const handlePressDeleteTask = async (taskId: string) => {
     try {
-      await deleteTask(taskId);
+      const id = await deleteTask(taskId);
 
-      navigation.navigate(ROUTES.root);
+      if (id) navigation.navigate(ROUTES.root);
     } catch (error) {
       console.log(error);
     }

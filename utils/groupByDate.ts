@@ -2,8 +2,7 @@ import { ITask } from '@/types';
 import { formatDateWithoutTime } from '@/utils/formatDate';
 
 export const groupByDate = (tasks: ITask[]) => {
-  const callback = ({ createdAt }) =>
-    formatDateWithoutTime(new Date(createdAt));
+  const callback = ({ createdAt }) => createdAt;
 
   return tasks.reduce((accumulator, item) => {
     const key = callback(item);

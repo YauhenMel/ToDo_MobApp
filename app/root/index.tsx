@@ -2,7 +2,7 @@ import { ScrollView, View } from 'react-native';
 import { TaskCard } from '@/components/TaskCard';
 import { styles } from '@/app/root/styles';
 import { useEffect, useState } from 'react';
-import { getTasks } from '@/API';
+import { getTasks } from '../../StorageAPI';
 import { useRoute } from '@react-navigation/native';
 import { DateTitle } from '@/components/DateTitle';
 import { groupByDate } from '@/utils/groupByDate';
@@ -22,6 +22,7 @@ export default function Root() {
       status: statusParam,
     })
       .then((tasks) => {
+        console.log(tasks);
         const groupedTasks = groupByDate(tasks);
 
         setTasks(groupedTasks);
